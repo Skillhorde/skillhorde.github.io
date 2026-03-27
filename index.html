@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Photography</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1>My Photography</h1>
+  <p>Capturing moments with precision</p>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="gallery">
+
+  <img src="photo1.jpg" onclick="openLightbox(this.src)">
+
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
