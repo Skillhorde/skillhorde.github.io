@@ -122,6 +122,27 @@ body {
   cursor: pointer;
 }
 
+.collection-card {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeIn 1s forwards;
+}
+
+.collection-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.collection-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* IMAGE */
 .collection-card img {
   width: 100%;
