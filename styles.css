@@ -12,7 +12,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url('photo1.jpg') center/cover no-repeat;
+  background: url('photo1.jpeg') center/cover no-repeat;
   text-align: center;
 }
 
@@ -64,4 +64,56 @@ body {
 /* SCROLLING */
 html {
   scroll-behavior: smooth;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
+}
+
+.collections {
+  padding: 120px 40px 40px;
+  text-align: center;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.collection-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.collection-item h2 {
+  margin-top: 10px;
 }
