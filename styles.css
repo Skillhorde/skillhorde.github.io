@@ -237,7 +237,7 @@ body {
 
 /* TEXT */
 .hover-overlay h2 {
-  color: #1a1a1a; /* dark text instead of white */
+  color: white;
   font-size: 2rem;
   letter-spacing: 3px;
   text-transform: uppercase;
