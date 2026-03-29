@@ -253,6 +253,5 @@ body {
 
 /* HOVER EFFECT (blur + slight zoom) */
 .item:hover img {
-  transform: scale(1.03);
   filter: blur(4px);
 }
