@@ -237,8 +237,9 @@ body {
 /* TEXT */
 .hover-overlay h2 {
   color: white;
-  font-size: 1.8rem;
-  letter-spacing: 2px;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 /* SHOW ON HOVER */
@@ -253,4 +254,5 @@ body {
 
 .item:hover img {
   transform: scale(1.05);
+  filter: brightness(0.85);
 }
