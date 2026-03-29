@@ -71,10 +71,9 @@ html {
   top: 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 20px 40px;
-  box-sizing: border-box;
+  padding: 20px 0;
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(10px);
   z-index: 1000;
@@ -85,11 +84,16 @@ html {
   font-weight: bold;
 }
 
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
 .nav-links a {
   color: white;
   text-decoration: none;
-  margin-left: 20px;
   font-size: 0.9rem;
+  letter-spacing: 2px;
 }
 
 .nav-links a:hover {
@@ -248,7 +252,7 @@ body {
   opacity: 1;
 }
 
-/* HOVER EFFECT (blur + slight zoom) */
+/* HOVER EFFECT (blur) */
 .item:hover img {
   filter: blur(4px);
 }
