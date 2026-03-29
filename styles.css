@@ -249,9 +249,7 @@ body {
 }
 
 /* ZOOM EFFECT */
-.item img {
-  transition: transform 0.4s ease;
-}
+
 
 /* HOVER EFFECT (blur + slight zoom) */
 .item:hover img {
