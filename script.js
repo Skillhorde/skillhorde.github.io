@@ -9,3 +9,20 @@ function openLightbox(src) {
 function closeLightbox() {
   document.getElementById("lightbox").style.display = "none";
 }
+
+let lastScroll = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 50) {
+    // scrolling down
+    navbar.classList.add("hidden");
+  } else {
+    // scrolling up
+    navbar.classList.remove("hidden");
+  }
+
+  lastScroll = currentScroll;
+});

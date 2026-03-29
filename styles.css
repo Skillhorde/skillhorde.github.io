@@ -73,6 +73,13 @@ html {
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(10px);
   z-index: 1000;
+
+  transition: transform 0.3s ease;
+}
+
+/* hidden state */
+.navbar.hidden {
+  transform: translateY(-100%);
 }
 
 .logo {
@@ -91,6 +98,32 @@ html {
   font-size: 0.9rem;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+.nav-links a {
+  position: relative;
+}
+
+/* underline (hidden by default) */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 1px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+/* hover effect */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* active page */
+.nav-links a.active::after {
+  width: 100%;
 }
 
 .nav-links a:hover {
