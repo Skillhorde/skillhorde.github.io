@@ -1,41 +1,23 @@
-function openLightbox(src, element) {
+function openLightbox(src) {
   const lightbox = document.getElementById("lightbox");
   const img = document.getElementById("lightbox-img");
 
-  // get clicked image position
-  const rect = element.getBoundingClientRect();
-
   img.src = src;
 
-  // set starting position (same as clicked image)
-  img.style.top = rect.top + "px";
-  img.style.left = rect.left + "px";
-  img.style.width = rect.width + "px";
-  img.style.height = rect.height + "px";
+  lightbox.style.display = "flex";
 
-  lightbox.style.display = "block";
-
-  // force reflow so browser registers initial position
-  img.getBoundingClientRect();
-
-  // animate to fullscreen
+  // allow browser to register display change before animation
   setTimeout(() => {
-    img.style.top = "50%";
-    img.style.left = "50%";
-    img.style.transform = "translate(-50%, -50%)";
-    img.style.width = "auto";
-    img.style.height = "100vh";
-    img.style.maxWidth = "100vw";
+    lightbox.classList.add("active");
   }, 10);
 }
 
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
 
-  // reverse animation
-  img.style.transform = "none";
+  lightbox.classList.remove("active");
 
+  // wait for animation to finish before hiding
   setTimeout(() => {
     lightbox.style.display = "none";
   }, 300);
