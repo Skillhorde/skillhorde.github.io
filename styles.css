@@ -38,10 +38,6 @@ body {
   cursor: pointer;
 }
 
-.gallery img:hover {
-  transform: scale(1.02);
-}
-
 /* LIGHTBOX */
 #lightbox {
   position: fixed;
