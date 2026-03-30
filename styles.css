@@ -6,11 +6,6 @@ body {
 }
 
 /* HERO */
-.hero-gallery-item {
-  position: relative;
-  width: 100%;
-}
-
 .hero-gallery-item img {
   width: 100%;
   height: auto;
