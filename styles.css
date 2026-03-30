@@ -16,7 +16,7 @@ body {
 
 .hero-overlay {
   position: absolute;
-  top: 20%;
+  top: 19%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
