@@ -11,7 +11,6 @@ body {
   height: auto;
   display: block;
   cursor: pointer;
-  margin: -200px;
 }
 
 .hero-overlay {
