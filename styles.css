@@ -109,6 +109,14 @@ body {
   cursor: pointer;
 }
 
+.gallery > img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  object-fit: contain;
+}
+
 /* LIGHTBOX */
 #lightbox {
   position: fixed;
