@@ -13,18 +13,6 @@ body {
   cursor: pointer;
 }
 
-.hero-overlay {
-  position: absolute;
-  top: 19%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  color: white;
-  z-index: 2;
-  pointer-events: none;
-  transition: opacity 0.2s linear, transform 0.2s linear;
-}
-
 .hero-overlay h1 {
   margin: 0;
   font-size: 3rem;
@@ -52,13 +40,14 @@ body {
 
 .hero-scroll-section {
   position: relative;
-  height: 150vh;
+  height: 200vh;
 }
 
 .hero-sticky-frame {
   position: sticky;
   top: 0;
   width: 100%;
+  height: 100vh;
 }
 
 .hero-sticky-frame img {
@@ -99,16 +88,12 @@ body {
 
 /* GALLERY */
 .gallery {
-  display: flex;
-  flex-direction: column;
+  overflow: visible;
 }
 
 .gallery > img {
-  width: 100%;
-  height: auto;
-  display: block;
-  cursor: pointer;
-  object-fit: contain;
+  position: relative;
+  z-index: 1;
 }
 
 /* LIGHTBOX */
