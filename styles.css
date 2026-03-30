@@ -6,27 +6,44 @@ body {
 }
 
 /* HERO */
-.hero {
+.hero-gallery-item {
   position: relative;
   width: 100%;
-  margin-top: -200px;
 }
 
-.hero-image {
+.hero-gallery-item img {
   width: 100%;
   height: auto;
   display: block;
+  cursor: pointer;
 }
 
-.hero-text {
+.hero-overlay {
   position: absolute;
-  top: 20%;
+  top: 18%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   text-align: center;
   color: white;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
   z-index: 2;
+  pointer-events: none;
+  transition: opacity 0.2s linear, transform 0.2s linear;
+}
+
+.hero-overlay h1 {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.hero-overlay p {
+  margin-top: 12px;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
 .hero h1 {

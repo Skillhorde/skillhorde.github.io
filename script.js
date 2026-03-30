@@ -39,3 +39,29 @@ window.addEventListener("scroll", () => {
 
   lastScroll = currentScroll;
 });
+
+const heroItem = document.querySelector(".hero-gallery-item");
+const heroOverlay = document.querySelector(".hero-overlay");
+
+function updateHeroOverlay() {
+  if (!heroItem || !heroOverlay) return;
+
+  const rect = heroItem.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  // How far the hero has moved upward relative to the viewport
+  const progress = Math.min(Math.max((0 - rect.top) / (windowHeight * 0.6), 0), 1);
+
+  // Move text upward as user scrolls
+  const translateY = progress * -120;
+
+  // Fade text out as user scrolls
+  const opacity = 1 - progress;
+
+  heroOverlay.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+  heroOverlay.style.opacity = opacity;
+}
+
+window.addEventListener("scroll", updateHeroOverlay);
+window.addEventListener("load", updateHeroOverlay);
+window.addEventListener("resize", updateHeroOverlay);

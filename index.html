@@ -15,20 +15,22 @@
   </div>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="hero">
-  <img src="photo1.jpeg" alt="Featured photograph" class="hero-image">
-  <div class="hero-text">
-  <h1>Abe Walters</h1>
-  <p>Photography Gallery</p>
-</section>
-
-<!-- GALLERY SECTION -->
 <section class="gallery">
 
-  <img src="photo1.jpeg" onclick="openLightbox(this.src, this)">
-  <img src="photo3.jpg" onclick="openLightbox(this.src, this)">
-  <img src="photo2.jpg" onclick="openLightbox(this.src, this)">
+  <!-- HERO / FIRST GALLERY IMAGE -->
+  <div class="hero-gallery-item">
+    <img src="photo1.jpeg" alt="Featured photograph" onclick="openLightbox(this.src)">
+    <div class="hero-overlay">
+      <h1>Abe Walters</h1>
+      <p>Photography Gallery</p>
+    </div>
+  </div>
+
+  <!-- REST OF GALLERY -->
+  <img src="photo2.jpg" alt="Photograph 2" onclick="openLightbox(this.src)">
+  <img src="photo3.jpg" alt="Photograph 3" onclick="openLightbox(this.src)">
+  <img src="photo4.jpg" alt="Photograph 4" onclick="openLightbox(this.src)">
+  <img src="photo5.jpg" alt="Photograph 5" onclick="openLightbox(this.src)">
 
 </section>
 
