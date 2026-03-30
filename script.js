@@ -40,22 +40,27 @@ window.addEventListener("scroll", () => {
   lastScroll = currentScroll;
 });
 
-const heroItem = document.querySelector(".hero-gallery-item");
+const heroSection = document.querySelector(".hero-scroll-section");
 const heroOverlay = document.querySelector(".hero-overlay");
 
 function updateHeroOverlay() {
-  if (!heroItem || !heroOverlay) return;
+  if (!heroSection || !heroOverlay) return;
 
-  const rect = heroItem.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
+  const rect = heroSection.getBoundingClientRect();
+  const sectionHeight = heroSection.offsetHeight;
+  const viewportHeight = window.innerHeight;
 
-  // How far the hero has moved upward relative to the viewport
-  const progress = Math.min(Math.max((0 - rect.top) / (windowHeight * 0.6), 0), 1);
+  // total scroll distance through the sticky section
+  const totalScrollable = sectionHeight - viewportHeight;
 
-  // Move text upward as user scrolls
-  const translateY = progress * -120;
+  // how far user has scrolled through that section
+  const scrolled = Math.min(Math.max(-rect.top, 0), totalScrollable);
 
-  // Fade text out as user scrolls
+  // only use the first part of the scroll for text animation
+  const textAnimationDistance = viewportHeight * 0.45;
+  const progress = Math.min(scrolled / textAnimationDistance, 1);
+
+  const translateY = progress * -140;
   const opacity = 1 - progress;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${translateY}px)`;

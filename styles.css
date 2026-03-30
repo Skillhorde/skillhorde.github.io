@@ -55,6 +55,52 @@ body {
   opacity: 0.8;
 }
 
+.hero-scroll-section {
+  position: relative;
+  height: 180vh;
+}
+
+.hero-sticky-frame {
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+.hero-sticky-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  text-align: center;
+  color: white;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.hero-overlay h1 {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.hero-overlay p {
+  margin-top: 12px;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
 /* GALLERY */
 .gallery {
   display: flex;
