@@ -66,6 +66,7 @@ body {
   height: auto;
   display: block;
   cursor: pointer;
+  object-fit: contain;
 }
 
 .hero-overlay {
