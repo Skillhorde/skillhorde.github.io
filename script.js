@@ -60,7 +60,7 @@ function updateHeroOverlay() {
   const textAnimationDistance = viewportHeight * 0.45;
   const progress = Math.min(scrolled / textAnimationDistance, 1);
 
-  const translateY = progress * -140;
+  const translateY = progress * -220;
   const opacity = 1 - progress;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${translateY}px)`;
