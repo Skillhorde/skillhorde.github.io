@@ -29,6 +29,7 @@ body {
   margin: 0;
   font-size: 3rem;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
   text-shadow: 0 2px 8px rgba(0,0,0,0.35);
 }
 
@@ -51,7 +52,7 @@ body {
 
 .hero-scroll-section {
   position: relative;
-  height: 180vh;
+  height: 150vh;
 }
 
 .hero-sticky-frame {
