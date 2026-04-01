@@ -22,13 +22,13 @@ body {
   height: auto;
   display: block;
   cursor: pointer;
-  margin-top: -230px;
+  margin-top: -240px;
 }
 
 /* HERO TEXT */
 .hero-overlay {
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%) translateY(0);
   text-align: center;
