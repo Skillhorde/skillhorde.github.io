@@ -72,7 +72,7 @@ function updateHeroOverlay() {
   const rawProgress = Math.min(scrolled / introScroll, 1);
   const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
 
-  const textTranslateY = easedProgress * -500;
+  const textTranslateY = easedProgress * -600;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
   heroOverlay.style.opacity = 1;
