@@ -66,7 +66,7 @@ function updateHeroOverlay() {
 
   const rect = heroSection.getBoundingClientRect();
   const viewportHeight = window.innerHeight;
-  const introScroll = viewportHeight * 0.45;
+  const introScroll = viewportHeight * 0.65;
 
   const scrolled = Math.min(Math.max(-rect.top, 0), introScroll);
   const rawProgress = Math.min(scrolled / introScroll, 1);
