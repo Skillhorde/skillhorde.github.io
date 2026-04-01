@@ -79,7 +79,7 @@ function updateHeroOverlay() {
   // then fade it out near the top
   let textOpacity = 1;
   if (rawProgress > 0.72) {
-    textOpacity = 1 - (rawProgress - 0.82) / 0.28;
+    textOpacity = 1 - (rawProgress - 0.77) / 0.28;
   }
   textOpacity = Math.max(0, Math.min(1, textOpacity));
 
