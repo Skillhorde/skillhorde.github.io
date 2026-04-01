@@ -1,3 +1,6 @@
+// =====================
+// LIGHTBOX
+// =====================
 function openLightbox(src) {
   const lightbox = document.getElementById("lightbox");
   const img = document.getElementById("lightbox-img");
@@ -20,7 +23,9 @@ function closeLightbox() {
   }, 300);
 }
 
-// Navbar hide/show on scroll
+// =====================
+// NAVBAR HIDE / SHOW
+// =====================
 let lastScroll = 0;
 const navbar = document.querySelector(".navbar");
 
@@ -38,21 +43,27 @@ window.addEventListener("scroll", () => {
   lastScroll = currentScroll;
 });
 
-// Hero scroll behavior
+// =====================
+// HERO SCROLL EFFECT
+// =====================
 const heroSection = document.querySelector(".hero-scroll-section");
 const heroImg = document.querySelector(".hero-sticky-frame img");
 const heroOverlay = document.querySelector(".hero-overlay");
 
+// Set dynamic height so image never gets cut off
 function setHeroSectionHeight() {
   if (!heroSection || !heroImg) return;
 
-  const displayedImageHeight = heroImg.offsetHeight;
+  const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
+
+  // amount of scroll used for text animation
   const introScroll = viewportHeight * 0.45;
 
-  heroSection.style.height = `${displayedImageHeight + introScroll}px`;
+  heroSection.style.height = `${imageHeight + introScroll}px`;
 }
 
+// Animate text (NOT the image)
 function updateHeroOverlay() {
   if (!heroSection || !heroOverlay) return;
 
@@ -70,21 +81,30 @@ function updateHeroOverlay() {
   heroOverlay.style.opacity = opacity;
 }
 
+// =====================
+// EVENT HANDLING
+// =====================
+
+// Run once everything is loaded
 window.addEventListener("load", () => {
   setHeroSectionHeight();
   updateHeroOverlay();
 });
 
+// Recalculate on resize
 window.addEventListener("resize", () => {
   setHeroSectionHeight();
   updateHeroOverlay();
 });
 
+// Update animation on scroll
 window.addEventListener("scroll", updateHeroOverlay);
 
+// Ensure correct sizing once image fully loads
 if (heroImg) {
-  heroImg.addEventListener("load", () => {
+  if (heroImg.complete) {
     setHeroSectionHeight();
-    updateHeroOverlay();
-  });
+  } else {
+    heroImg.addEventListener("load", setHeroSectionHeight);
+  }
 }
