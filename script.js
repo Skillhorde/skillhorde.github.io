@@ -47,25 +47,22 @@ window.addEventListener("scroll", () => {
 // HERO SCROLL EFFECT
 // =====================
 const heroSection = document.querySelector(".hero-scroll-section");
+const heroFrame = document.querySelector(".hero-sticky-frame");
 const heroImg = document.querySelector(".hero-sticky-frame img");
 const heroOverlay = document.querySelector(".hero-overlay");
 
-// Set dynamic height so image never gets cut off
 function setHeroSectionHeight() {
   if (!heroSection || !heroImg) return;
 
   const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
-
-  // amount of scroll used for text animation
   const introScroll = viewportHeight * 0.45;
 
   heroSection.style.height = `${imageHeight + introScroll}px`;
 }
 
-// Animate text (NOT the image)
 function updateHeroOverlay() {
-  if (!heroSection || !heroOverlay) return;
+  if (!heroSection || !heroOverlay || !heroImg) return;
 
   const rect = heroSection.getBoundingClientRect();
   const viewportHeight = window.innerHeight;
@@ -74,33 +71,29 @@ function updateHeroOverlay() {
   const scrolled = Math.min(Math.max(-rect.top, 0), introScroll);
   const progress = Math.min(scrolled / introScroll, 1);
 
-  const translateY = progress * -140;
-  const opacity = 1 - progress;
+  const textTranslateY = progress * -140;
+  const textOpacity = 1 - progress;
 
-  heroOverlay.style.transform = `translateX(-50%) translateY(${translateY}px)`;
-  heroOverlay.style.opacity = opacity;
+  heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
+  heroOverlay.style.opacity = textOpacity;
+
+  // subtle parallax on image
+  const parallaxY = Math.min(Math.max(-rect.top * 0.12, 0), 60);
+  heroImg.style.transform = `translateY(${parallaxY}px)`;
 }
 
-// =====================
-// EVENT HANDLING
-// =====================
-
-// Run once everything is loaded
 window.addEventListener("load", () => {
   setHeroSectionHeight();
   updateHeroOverlay();
 });
 
-// Recalculate on resize
 window.addEventListener("resize", () => {
   setHeroSectionHeight();
   updateHeroOverlay();
 });
 
-// Update animation on scroll
 window.addEventListener("scroll", updateHeroOverlay);
 
-// Ensure correct sizing once image fully loads
 if (heroImg) {
   if (heroImg.complete) {
     setHeroSectionHeight();
