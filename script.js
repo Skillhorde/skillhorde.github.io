@@ -55,7 +55,7 @@ function setHeroSectionHeight() {
 
   const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
-  const introScroll = viewportHeight * 0.45;
+  const introScroll = viewportHeight * 0.9; // longer, slower Apple-like intro
   const croppedTop = 200;
 
   heroSection.style.height = `${imageHeight - croppedTop + introScroll}px`;
@@ -66,13 +66,18 @@ function updateHeroOverlay() {
 
   const rect = heroSection.getBoundingClientRect();
   const viewportHeight = window.innerHeight;
-  const introScroll = viewportHeight * 0.85;
+  const introScroll = viewportHeight * 0.9;
 
   const scrolled = Math.min(Math.max(-rect.top, 0), introScroll);
   const rawProgress = Math.min(scrolled / introScroll, 1);
-  const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
 
-  const textTranslateY = easedProgress * -700;
+  // smoother, more gradual easing
+  const easedProgress = rawProgress < 0.5
+    ? 4 * rawProgress * rawProgress * rawProgress
+    : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
+
+  // more restrained motion
+  const textTranslateY = easedProgress * -320;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
   heroOverlay.style.opacity = 1;

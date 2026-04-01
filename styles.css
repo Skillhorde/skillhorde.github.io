@@ -28,7 +28,7 @@ body {
 /* HERO TEXT */
 .hero-overlay {
   position: absolute;
-  top: 15%;
+  top: 34%;
   left: 50%;
   transform: translateX(-50%) translateY(0);
   text-align: center;
@@ -36,6 +36,7 @@ body {
   z-index: 2;
   pointer-events: none;
   opacity: 1;
+  will-change: transform;
 }
 
 .hero-overlay h1 {
@@ -122,10 +123,10 @@ html {
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
   z-index: 1000;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.45s ease;
   opacity: 1;
 }
 
