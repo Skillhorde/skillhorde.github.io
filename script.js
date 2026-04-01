@@ -70,3 +70,56 @@ function updateHeroOverlay() {
 window.addEventListener("scroll", updateHeroOverlay);
 window.addEventListener("load", updateHeroOverlay);
 window.addEventListener("resize", updateHeroOverlay);
+
+const heroSection = document.querySelector(".hero-scroll-section");
+const heroFrame = document.querySelector(".hero-sticky-frame");
+const heroImg = document.querySelector(".hero-sticky-frame img");
+const heroOverlay = document.querySelector(".hero-overlay");
+
+function setHeroSectionHeight() {
+  if (!heroSection || !heroImg) return;
+
+  const displayedImageHeight = heroImg.offsetHeight;
+  const viewportHeight = window.innerHeight;
+
+  // extra pinned scroll distance for the text fade/move
+  const introScroll = viewportHeight * 0.45;
+
+  heroSection.style.height = `${displayedImageHeight + introScroll}px`;
+}
+
+function updateHeroOverlay() {
+  if (!heroSection || !heroOverlay) return;
+
+  const rect = heroSection.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+  const introScroll = viewportHeight * 0.45;
+
+  const scrolled = Math.min(Math.max(-rect.top, 0), introScroll);
+  const progress = Math.min(scrolled / introScroll, 1);
+
+  const translateY = progress * -140;
+  const opacity = 1 - progress;
+
+  heroOverlay.style.transform = `translateX(-50%) translateY(${translateY}px)`;
+  heroOverlay.style.opacity = opacity;
+}
+
+window.addEventListener("load", () => {
+  setHeroSectionHeight();
+  updateHeroOverlay();
+});
+
+window.addEventListener("resize", () => {
+  setHeroSectionHeight();
+  updateHeroOverlay();
+});
+
+window.addEventListener("scroll", updateHeroOverlay);
+
+if (heroImg) {
+  heroImg.addEventListener("load", () => {
+    setHeroSectionHeight();
+    updateHeroOverlay();
+  });
+}
