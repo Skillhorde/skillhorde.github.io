@@ -21,8 +21,6 @@ body {
   height: auto;
   display: block;
   cursor: pointer;
-  transition: transform 0.08s linear;
-  will-change: transform;
 }
 
 /* HERO TEXT */
