@@ -55,7 +55,7 @@ function setHeroSectionHeight() {
 
   const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
-  const introScroll = viewportHeight * 0.45;
+  const introScroll = viewportHeight * 0.65;
   const croppedTop = 200;
 
   heroSection.style.height = `${imageHeight - croppedTop + introScroll}px`;
@@ -72,7 +72,7 @@ function updateHeroOverlay() {
   const rawProgress = Math.min(scrolled / introScroll, 1);
   const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
 
-  const textTranslateY = easedProgress * -700;
+  const textTranslateY = easedProgress * -800;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
   heroOverlay.style.opacity = 1;
