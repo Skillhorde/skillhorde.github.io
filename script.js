@@ -72,19 +72,10 @@ function updateHeroOverlay() {
   const rawProgress = Math.min(scrolled / introScroll, 1);
   const easedProgress = 1 - Math.pow(1 - rawProgress, 3);
 
-  // move text farther upward
-  const textTranslateY = easedProgress * -260;
-
-  // keep text fully visible until late in the animation,
-  // then fade it out near the top
-  let textOpacity = 1;
-  if (rawProgress > 0.72) {
-    textOpacity = 1 - (rawProgress - 0.77) / 0.28;
-  }
-  textOpacity = Math.max(0, Math.min(1, textOpacity));
+  const textTranslateY = easedProgress * -400;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
-  heroOverlay.style.opacity = textOpacity;
+  heroOverlay.style.opacity = 1;
 }
 
 window.addEventListener("load", () => {
