@@ -123,11 +123,13 @@ html {
   background: rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  transition: transform 0.3s ease;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
 .navbar.hidden {
-  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .nav-links {
