@@ -66,7 +66,7 @@ function measureHeroAnimation() {
   const croppedTop = 200;
 
   // Distance needed to move text fully above viewport
-  heroTextExitDistance = overlayRect.top + overlayRect.height + 80;
+  heroTextExitDistance = overlayRect.top + overlayRect.height + 40;
 
   // Keep the image pinned until the text is fully gone
   heroIntroScroll = Math.max(viewportHeight * 0.9, heroTextExitDistance);
