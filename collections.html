@@ -2,57 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Abe's Photo Gallery</title>
+  <title>Collections | Abe Walters</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-links">
-    <a href="index.html">Gallery</a>
-    <a href="collections.html">Collections</a>
-  </div>
-</nav>
-
-<section class="collections">
-
-  <div class="masonry">
-
-    <!-- LEFT LARGE -->
-    <div class="item tall" onclick="location.href='urban.html'">
-      <img src="photo1.jpeg">
-      <div class="hover-overlay"><h2>Urban</h2></div>
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-links">
+      <a href="index.html">Gallery</a>
+      <a href="collections.html" class="active">Collections</a>
     </div>
+  </nav>
 
-    <!-- TOP MIDDLE -->
-    <div class="item wide" onclick="location.href='nature.html'">
-      <img src="photo3.jpg">
-      <div class="hover-overlay"><h2>Nature</h2></div>
+  <!-- COLLECTIONS HERO -->
+  <section class="collections-hero">
+    <h1>Collections</h1>
+    <p>A curated selection of photographic work</p>
+  </section>
+
+  <!-- COLLECTION GRID -->
+  <section class="collections-page">
+    <div class="masonry">
+
+      <a class="item tall" href="portraits.html">
+        <img src="photo1.jpeg" alt="Portraits collection preview">
+        <div class="hover-overlay">
+          <h2>Urban</h2>
+        </div>
+      </a>
+
+      <a class="item wide" href="landscapes.html">
+        <img src="photo3.jpg" alt="Landscapes collection preview">
+        <div class="hover-overlay">
+          <h2>Nature</h2>
+        </div>
+      </a>
+
+      <a class="item" href="street.html">
+        <img src="" alt="Street collection preview">
+        <div class="hover-overlay">
+          <h2>Coming Soon...</h2>
+        </div>
+      </a>
+
+      <a class="item tall" href="editorial.html">
+        <img src="" alt="Editorial collection preview">
+        <div class="hover-overlay">
+          <h2>Coming Soon...</h2>
+        </div>
+      </a>
+
+      <a class="item wide" href="travel.html">
+        <img src="" alt="Travel collection preview">
+        <div class="hover-overlay">
+          <h2>Coming Soon...</h2>
+        </div>
+      </a>
+
+      <a class="item" href="blackandwhite.html">
+        <img src="" alt="Black and White collection preview">
+        <div class="hover-overlay">
+          <h2>Coming Soon...</h2>
+        </div>
+      </a>
+
     </div>
+  </section>
 
-    <!-- BOTTOM MIDDLE -->
-    <div class="item" onclick="location.href='abstract.html'">
-      <img src="">
-      <div class="hover-overlay"><h2>Abstract</h2></div>
-    </div>
-
-    <!-- RIGHT TALL -->
-    <div class="item tall" onclick="location.href='.html'">
-      <img src="">
-      <div class="hover-overlay"><h2>Coming Soon...</h2></div>
-    </div>
-
-    <!-- FAR RIGHT TALL -->
-    <div class="item tall" onclick="location.href='.html'">
-      <img src="">
-      <div class="hover-overlay"><h2>Coming Soon...</h2></div>
-    </div>
-
-  </div>
-
-</section>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
