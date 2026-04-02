@@ -323,7 +323,6 @@ html {
 /* COLLECTION HOVER EFFECT */
 .item:hover img {
   filter: blur(4px);
-  transform: scale(1.02);
 }
 
 /* RESPONSIVE */
