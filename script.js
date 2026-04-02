@@ -56,7 +56,7 @@ function getTextExitDistance() {
   const overlayRect = heroOverlay.getBoundingClientRect();
 
   // how far the text needs to move upward so its bottom clears the top of the viewport
-  return overlayRect.top + overlayRect.height + 80;
+  return overlayRect.top + overlayRect.height + 160;
 }
 
 function setHeroSectionHeight() {
