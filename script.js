@@ -50,72 +50,62 @@ const heroSection = document.querySelector(".hero-scroll-section");
 const heroImg = document.querySelector(".hero-sticky-frame img");
 const heroOverlay = document.querySelector(".hero-overlay");
 
-function getTextExitDistance() {
-  if (!heroOverlay) return 0;
+let heroIntroScroll = 0;
+let heroTextExitDistance = 0;
 
-  const overlayRect = heroOverlay.getBoundingClientRect();
-
-  // how far the text needs to move upward so its bottom clears the top of the viewport
-  return overlayRect.top + overlayRect.height + 160;
-}
-
-function setHeroSectionHeight() {
+function measureHeroAnimation() {
   if (!heroSection || !heroImg || !heroOverlay) return;
+
+  // Reset transform so we measure the text at its true resting position
+  heroOverlay.style.transform = "translateX(-50%) translateY(0)";
+  heroOverlay.style.opacity = "1";
 
   const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
+  const overlayRect = heroOverlay.getBoundingClientRect();
   const croppedTop = 200;
 
-  // longer pinned intro so image does not begin scrolling until text is fully gone
-  const introScroll = Math.max(viewportHeight * 0.9, getTextExitDistance());
+  // Distance needed to move the whole text block completely above the viewport
+  heroTextExitDistance = overlayRect.top + overlayRect.height + 80;
 
-  heroSection.style.height = `${imageHeight - croppedTop + introScroll}px`;
+  // Keep the image pinned until the text is fully gone
+  heroIntroScroll = Math.max(viewportHeight * 0.9, heroTextExitDistance);
+
+  heroSection.style.height = `${imageHeight - croppedTop + heroIntroScroll}px`;
 }
 
 function updateHeroOverlay() {
   if (!heroSection || !heroOverlay) return;
 
   const rect = heroSection.getBoundingClientRect();
-  const viewportHeight = window.innerHeight;
+  const scrolled = Math.min(Math.max(-rect.top, 0), heroIntroScroll || 1);
+  const rawProgress = Math.min(scrolled / (heroIntroScroll || 1), 1);
 
-  // use the same intro distance here as in setHeroSectionHeight
-  const introScroll = Math.max(viewportHeight * 0.9, getTextExitDistance());
-
-  const scrolled = Math.min(Math.max(-rect.top, 0), introScroll);
-  const rawProgress = Math.min(scrolled / introScroll, 1);
-
-  // smooth Apple-like easing
+  // Smooth Apple-like easing
   const easedProgress =
     rawProgress < 0.5
       ? 4 * rawProgress * rawProgress * rawProgress
       : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
 
-  // move text fully off the top of the screen
-  const textTranslateY = easedProgress * -getTextExitDistance();
+  const textTranslateY = easedProgress * -heroTextExitDistance;
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
-  heroOverlay.style.opacity = 1;
+  heroOverlay.style.opacity = "1";
 }
 
-window.addEventListener("load", () => {
-  setHeroSectionHeight();
+function refreshHeroAnimation() {
+  measureHeroAnimation();
   updateHeroOverlay();
-});
+}
 
-window.addEventListener("resize", () => {
-  setHeroSectionHeight();
-  updateHeroOverlay();
-});
-
+window.addEventListener("load", refreshHeroAnimation);
+window.addEventListener("resize", refreshHeroAnimation);
 window.addEventListener("scroll", updateHeroOverlay);
 
 if (heroImg) {
   if (heroImg.complete) {
-    setHeroSectionHeight();
+    refreshHeroAnimation();
   } else {
-    heroImg.addEventListener("load", () => {
-      setHeroSectionHeight();
-      updateHeroOverlay();
-    });
+    heroImg.addEventListener("load", refreshHeroAnimation);
   }
 }
