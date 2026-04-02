@@ -50,13 +50,24 @@ const heroSection = document.querySelector(".hero-scroll-section");
 const heroImg = document.querySelector(".hero-sticky-frame img");
 const heroOverlay = document.querySelector(".hero-overlay");
 
+function getTextExitDistance() {
+  if (!heroOverlay) return 0;
+
+  const overlayRect = heroOverlay.getBoundingClientRect();
+
+  // how far the text needs to move upward so its bottom clears the top of the viewport
+  return overlayRect.top + overlayRect.height + 40;
+}
+
 function setHeroSectionHeight() {
-  if (!heroSection || !heroImg) return;
+  if (!heroSection || !heroImg || !heroOverlay) return;
 
   const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
-  const introScroll = viewportHeight * 0.9; // longer, slower Apple-like intro
   const croppedTop = 200;
+
+  // longer pinned intro so image does not begin scrolling until text is fully gone
+  const introScroll = Math.max(viewportHeight * 0.9, getTextExitDistance());
 
   heroSection.style.height = `${imageHeight - croppedTop + introScroll}px`;
 }
@@ -66,18 +77,21 @@ function updateHeroOverlay() {
 
   const rect = heroSection.getBoundingClientRect();
   const viewportHeight = window.innerHeight;
-  const introScroll = viewportHeight * 0.9;
+
+  // use the same intro distance here as in setHeroSectionHeight
+  const introScroll = Math.max(viewportHeight * 0.9, getTextExitDistance());
 
   const scrolled = Math.min(Math.max(-rect.top, 0), introScroll);
   const rawProgress = Math.min(scrolled / introScroll, 1);
 
-  // smoother, more gradual easing
-  const easedProgress = rawProgress < 0.5
-    ? 4 * rawProgress * rawProgress * rawProgress
-    : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
+  // smooth Apple-like easing
+  const easedProgress =
+    rawProgress < 0.5
+      ? 4 * rawProgress * rawProgress * rawProgress
+      : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
 
-  // more restrained motion
-  const textTranslateY = easedProgress * -320;
+  // move text fully off the top of the screen
+  const textTranslateY = easedProgress * -getTextExitDistance();
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
   heroOverlay.style.opacity = 1;
@@ -99,6 +113,9 @@ if (heroImg) {
   if (heroImg.complete) {
     setHeroSectionHeight();
   } else {
-    heroImg.addEventListener("load", setHeroSectionHeight);
+    heroImg.addEventListener("load", () => {
+      setHeroSectionHeight();
+      updateHeroOverlay();
+    });
   }
 }
