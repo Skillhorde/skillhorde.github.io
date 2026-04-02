@@ -56,7 +56,7 @@ let heroTextExitDistance = 0;
 function measureHeroAnimation() {
   if (!heroSection || !heroImg || !heroOverlay) return;
 
-  // Reset transform so we measure the text at its true resting position
+  // Reset to resting state before measuring
   heroOverlay.style.transform = "translateX(-50%) translateY(0)";
   heroOverlay.style.opacity = "1";
 
@@ -65,7 +65,7 @@ function measureHeroAnimation() {
   const overlayRect = heroOverlay.getBoundingClientRect();
   const croppedTop = 200;
 
-  // Distance needed to move the whole text block completely above the viewport
+  // Distance needed to move text fully above viewport
   heroTextExitDistance = overlayRect.top + overlayRect.height + 80;
 
   // Keep the image pinned until the text is fully gone
@@ -79,7 +79,10 @@ function updateHeroOverlay() {
 
   const rect = heroSection.getBoundingClientRect();
   const scrolled = Math.min(Math.max(-rect.top, 0), heroIntroScroll || 1);
-  const rawProgress = Math.min(scrolled / (heroIntroScroll || 1), 1);
+
+  // Option 1: slow the text motion slightly
+  const textPhaseEnd = heroIntroScroll * 0.9;
+  const rawProgress = Math.min(scrolled / textPhaseEnd, 1);
 
   // Smooth Apple-like easing
   const easedProgress =
