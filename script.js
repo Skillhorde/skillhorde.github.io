@@ -81,7 +81,7 @@ function updateHeroOverlay() {
   const scrolled = Math.min(Math.max(-rect.top, 0), heroIntroScroll || 1);
 
   // Option 1: slow the text motion slightly
-  const textPhaseEnd = heroIntroScroll * 1;
+  const textPhaseEnd = heroIntroScroll * 1.2;
   const rawProgress = Math.min(scrolled / textPhaseEnd, 1);
 
   // Smooth Apple-like easing
