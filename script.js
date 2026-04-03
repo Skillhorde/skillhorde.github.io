@@ -94,8 +94,8 @@ function updateHeroOverlay() {
 
   // Fade only in the latter part of the motion
   let textOpacity = 1;
-  if (rawProgress > 0.55) {
-    textOpacity = 1 - (rawProgress - 0.55) / 0.45;
+  if (rawProgress > 0.35) {
+    textOpacity = 1 - (rawProgress - 0.35) / 0.6;
   }
   textOpacity = Math.max(0, Math.min(1, textOpacity));
 
