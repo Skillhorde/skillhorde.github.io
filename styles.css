@@ -170,181 +170,97 @@ html {
   opacity: 0.6;
 }
 
-/* COLLECTIONS PAGE */
-.collections-hero {
-  padding: 140px 40px 60px;
-  text-align: center;
-}
-
-.collections-hero h1 {
-  margin: 0;
-  font-size: 3rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.collections-hero p {
-  margin-top: 14px;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-}
-
-.collections-page {
-  padding: 0 40px 40px;
-}
-
-/* Optional older collection card layout */
-.collections {
-  padding: 100px 40px 40px;
-  margin-top: 0;
-  text-align: center;
-}
-
-.collection-card {
-  position: relative;
+/* COLLECTIONS: NEW DIRECTION */
+.collections-alt {
   width: 100%;
-  height: 60vh;
-  overflow: hidden;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeIn 1s forwards;
+  padding: 90px 20px 20px;
+  box-sizing: border-box;
 }
 
-.collection-card:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.collection-card:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.collection-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.collection-card .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.collection-card h1 {
-  font-size: 2.5rem;
-  letter-spacing: 2px;
-}
-
-.collection-card:hover img {
-  transform: scale(1.05);
-}
-
-/* MASONRY GRID */
-.masonry {
+.collection-pair {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
-/* BASE ITEM */
-.item {
+.collection-feature {
   position: relative;
+  display: block;
   overflow: hidden;
-  cursor: pointer;
   text-decoration: none;
-  color: inherit;
-  background: #111;
+  color: white;
+  background: #0f0f0f;
 }
 
-/* COLLECTION PREVIEW IMAGE */
-.item img {
+.collection-large {
+  width: 100%;
+  height: 78vh;
+  margin-bottom: 14px;
+}
+
+.collection-medium {
+  height: 56vh;
+}
+
+.collection-feature img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease, filter 0.4s ease;
+  transition: transform 0.45s ease, filter 0.45s ease;
 }
 
-/* SIZE VARIATIONS */
-.item.tall {
-  grid-row: span 2;
-  height: 680px;
-}
-
-.item.wide {
-  grid-column: span 2;
-  height: 320px;
-}
-
-.item:not(.tall):not(.wide) {
-  height: 320px;
-}
-
-/* HOVER OVERLAY */
-.hover-overlay {
+.collection-label {
   position: absolute;
   inset: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: rgba(230, 220, 200, 0.18);
+  justify-content: center;
+  background: rgba(230, 220, 200, 0.16);
   opacity: 0;
   transition: opacity 0.35s ease;
 }
 
-.item:hover .hover-overlay {
+.collection-label span {
+  font-size: 2rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.collection-feature:hover .collection-label {
   opacity: 1;
 }
 
-.hover-overlay h2 {
-  color: white;
-  font-size: 2rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-}
-
-/* COLLECTION HOVER EFFECT */
-.item:hover img {
+.collection-feature:hover img {
+  transform: scale(1.02);
   filter: blur(4px);
 }
 
 /* RESPONSIVE */
-@media (max-width: 1100px) {
-  .masonry {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 900px) {
+  .collections-alt {
+    padding: 85px 14px 14px;
   }
 
-  .item.tall,
-  .item.wide,
-  .item:not(.tall):not(.wide) {
-    grid-column: span 1;
-    grid-row: span 1;
-    height: 420px;
+  .collection-pair {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
-  .collections-hero {
-    padding: 130px 30px 50px;
+  .collection-large {
+    height: 58vh;
+    margin-bottom: 10px;
   }
 
-  .collections-page {
-    padding: 0 30px 30px;
+  .collection-medium {
+    height: 42vh;
+  }
+
+  .collection-label span {
+    font-size: 1.5rem;
   }
 }
 
@@ -358,34 +274,20 @@ html {
     letter-spacing: 1.5px;
   }
 
-  .collections-hero {
-    padding: 120px 20px 40px;
+  .collections-alt {
+    padding: 80px 10px 10px;
   }
 
-  .collections-hero h1 {
-    font-size: 2.2rem;
+  .collection-large {
+    height: 44vh;
   }
 
-  .collections-hero p {
-    font-size: 0.8rem;
+  .collection-medium {
+    height: 34vh;
   }
 
-  .collections-page {
-    padding: 0 20px 20px;
-  }
-
-  .masonry {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .item.tall,
-  .item.wide,
-  .item:not(.tall):not(.wide) {
-    height: 320px;
-  }
-
-  .hover-overlay h2 {
-    font-size: 1.4rem;
+  .collection-label span {
+    font-size: 1.15rem;
+    letter-spacing: 0.14em;
   }
 }
