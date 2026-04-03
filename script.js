@@ -65,10 +65,10 @@ function measureHeroAnimation() {
   const overlayRect = heroOverlay.getBoundingClientRect();
   const croppedTop = 200;
 
-  // Distance needed to move text fully above viewport
+  // Keep the same general travel distance logic you already have
   heroTextExitDistance = overlayRect.top + overlayRect.height + 40;
 
-  // Keep the image pinned until the text is fully gone
+  // Keep the image pinned while the text animation completes
   heroIntroScroll = Math.max(viewportHeight * 0.9, heroTextExitDistance);
 
   heroSection.style.height = `${imageHeight - croppedTop + heroIntroScroll}px`;
@@ -80,7 +80,6 @@ function updateHeroOverlay() {
   const rect = heroSection.getBoundingClientRect();
   const scrolled = Math.min(Math.max(-rect.top, 0), heroIntroScroll || 1);
 
-  // Option 1: slow the text motion slightly
   const textPhaseEnd = heroIntroScroll * 1.2;
   const rawProgress = Math.min(scrolled / textPhaseEnd, 1);
 
@@ -90,10 +89,18 @@ function updateHeroOverlay() {
       ? 4 * rawProgress * rawProgress * rawProgress
       : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
 
-  const textTranslateY = easedProgress * -heroTextExitDistance;
+  // Move upward, but not fully off-screen
+  const textTranslateY = easedProgress * -(heroTextExitDistance * 0.72);
+
+  // Fade only in the latter part of the motion
+  let textOpacity = 1;
+  if (rawProgress > 0.55) {
+    textOpacity = 1 - (rawProgress - 0.55) / 0.45;
+  }
+  textOpacity = Math.max(0, Math.min(1, textOpacity));
 
   heroOverlay.style.transform = `translateX(-50%) translateY(${textTranslateY}px)`;
-  heroOverlay.style.opacity = "1";
+  heroOverlay.style.opacity = textOpacity.toString();
 }
 
 function refreshHeroAnimation() {
