@@ -47,7 +47,7 @@ window.addEventListener("scroll", () => {
 // HERO SCROLL EFFECT
 // =====================
 const heroSection = document.querySelector(".hero-scroll-section");
-const heroImg = document.querySelector(".hero-sticky-frame img");
+const heroImg = document.querySelector(".hero-img img");
 const heroOverlay = document.querySelector(".hero-overlay");
 
 let heroIntroScroll = 0;
@@ -62,40 +62,40 @@ function measureHeroAnimation() {
 
   const imageHeight = heroImg.getBoundingClientRect().height;
   const viewportHeight = window.innerHeight;
-  const overlayRect = heroOverlay.getBoundingClientRect();
-  const croppedTop = 200;
 
-  // Keep the same general travel distance logic you already have
-  heroTextExitDistance = overlayRect.top + overlayRect.height + 40;
-
-  // Keep the image pinned while the text animation completes
+  heroTextExitDistance = viewportHeight * 0.17;
   heroIntroScroll = Math.max(viewportHeight * 0.9, heroTextExitDistance);
 
-  heroSection.style.height = `${imageHeight - croppedTop + heroIntroScroll}px`;
+  // Full scroll range = image height + viewport height, so image can pan from top to bottom
+  heroSection.style.height = `${imageHeight + viewportHeight}px`;
 }
 
 function updateHeroOverlay() {
-  if (!heroSection || !heroOverlay) return;
+  if (!heroSection || !heroImg || !heroOverlay) return;
 
   const rect = heroSection.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+  const totalScrollDistance = rect.height - viewportHeight;
+  const rawProgress = totalScrollDistance > 0 ? Math.min(Math.max(-rect.top / totalScrollDistance, 0), 1) : 0;
+
+  const imageHeight = heroImg.getBoundingClientRect().height;
+  const maxTranslate = Math.max(imageHeight - viewportHeight, 0);
+  heroImg.style.transform = `translate(-50%, -${maxTranslate * rawProgress}px)`;
+
   const scrolled = Math.min(Math.max(-rect.top, 0), heroIntroScroll || 1);
-
   const textPhaseEnd = heroIntroScroll * 1.2;
-  const rawProgress = Math.min(scrolled / textPhaseEnd, 1);
+  const overlayRawProgress = Math.min(scrolled / textPhaseEnd, 1);
 
-  // Smooth Apple-like easing
   const easedProgress =
-    rawProgress < 0.5
-      ? 4 * rawProgress * rawProgress * rawProgress
-      : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
+    overlayRawProgress < 0.5
+      ? 4 * overlayRawProgress * overlayRawProgress * overlayRawProgress
+      : 1 - Math.pow(-2 * overlayRawProgress + 2, 3) / 2;
 
-  // Move upward, but not fully off-screen
-  const textTranslateY = easedProgress * -(heroTextExitDistance * 0.72);
-
-  // Fade only in the latter part of the motion
+  const textTranslateY = easedProgress * -(heroTextExitDistance * 1.3);
   let textOpacity = 1;
-  if (rawProgress > 0.35) {
-    textOpacity = 1 - (rawProgress - 0.35) / 0.6;
+  const rawProgressParam = 0.5;
+  if (overlayRawProgress > rawProgressParam) {
+    textOpacity = 1 - (overlayRawProgress - rawProgressParam) / 0.3;
   }
   textOpacity = Math.max(0, Math.min(1, textOpacity));
 
