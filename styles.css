@@ -223,10 +223,11 @@ html {
 }
 
 .collection-label span {
+  color: white;
   font-size: 2rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .collection-feature:hover .collection-label {
